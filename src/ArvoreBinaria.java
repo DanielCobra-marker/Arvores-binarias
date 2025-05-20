@@ -32,6 +32,19 @@ public class ArvoreBinaria {
         return 1 + contarNos(no.esquerdo) + contarNos(no.direito);
     }
 
+    // Método de pré-ordem
+    public void preOrdem() {
+        preOrdem(raiz);
+    }
+
+    private void preOrdem(No no) {
+        if (no != null) {
+            System.out.print(no.valor + " ");
+            preOrdem(no.esquerdo);
+            preOrdem(no.direito);
+        }
+    }
+
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
         arvore.inserir(10);
@@ -41,5 +54,8 @@ public class ArvoreBinaria {
         arvore.inserir(7);
 
         System.out.println("Número de nós na árvore: " + arvore.contarNos());
+        
+        System.out.print("Pré-ordem: ");
+        arvore.preOrdem();
     }
 }
