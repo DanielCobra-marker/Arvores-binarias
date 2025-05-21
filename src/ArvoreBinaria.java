@@ -32,7 +32,6 @@ public class ArvoreBinaria {
         return 1 + contarNos(no.esquerdo) + contarNos(no.direito);
     }
 
-    // Método de pré-ordem
     public void preOrdem() {
         preOrdem(raiz);
     }
@@ -42,6 +41,18 @@ public class ArvoreBinaria {
             System.out.print(no.valor + " ");
             preOrdem(no.esquerdo);
             preOrdem(no.direito);
+        }
+    }
+
+    public void emOrdem() {
+        emOrdem(raiz);
+    }
+
+    private void emOrdem(No no) {
+        if (no != null) {
+            emOrdem(no.esquerdo);
+            System.out.print(no.valor + " ");
+            emOrdem(no.direito);
         }
     }
 
@@ -57,5 +68,10 @@ public class ArvoreBinaria {
         
         System.out.print("Pré-ordem: ");
         arvore.preOrdem();
+
+        System.out.println();  // Para pular linha antes da próxima saída
+
+        System.out.print("Em ordem: ");
+        arvore.emOrdem();
     }
 }
