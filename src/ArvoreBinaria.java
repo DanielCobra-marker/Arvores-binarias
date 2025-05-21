@@ -56,6 +56,18 @@ public class ArvoreBinaria {
         }
     }
 
+    public void posOrdem() {
+        posOrdem(raiz);
+    }
+
+    private void posOrdem(No no) {
+        if (no != null) {
+            posOrdem(no.esquerdo);
+            posOrdem(no.direito);
+            System.out.print(no.valor + " ");
+        }
+    }
+
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
         arvore.inserir(10);
@@ -69,9 +81,14 @@ public class ArvoreBinaria {
         System.out.print("Pré-ordem: ");
         arvore.preOrdem();
 
-        System.out.println();  // Para pular linha antes da próxima saída
+        System.out.println(); 
 
         System.out.print("Em ordem: ");
         arvore.emOrdem();
+
+        System.out.println(); 
+
+        System.out.print("Pós-ordem: ");
+        arvore.posOrdem();
     }
 }
