@@ -1,9 +1,13 @@
+import java.util.Stack;
+
 class No {
     int valor;
     No esquerdo, direito;
 
     No(int valor) {
         this.valor = valor;
+        this.esquerdo = null;
+        this.direito = null;
     }
 }
 
@@ -21,6 +25,28 @@ public class ArvoreBinaria {
         else
             no.direito = inserir(no.direito, valor);
         return no;
+    }
+
+    public int contarNosComPilha() {
+        if (raiz == null) return 0;
+
+        int contador = 0;
+        Stack<No> pilha = new Stack<>();
+        pilha.push(raiz);
+
+        while (!pilha.isEmpty()) {
+            No noAtual = pilha.pop();
+            contador++;
+
+            if (noAtual.direito != null) {
+                pilha.push(noAtual.direito);
+            }
+            if (noAtual.esquerdo != null) {
+                pilha.push(noAtual.esquerdo);
+            }
+        }
+
+        return contador;
     }
 
     public int contarNos() {
@@ -70,25 +96,26 @@ public class ArvoreBinaria {
 
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
+        
         arvore.inserir(10);
         arvore.inserir(5);
         arvore.inserir(15);
         arvore.inserir(3);
         arvore.inserir(7);
 
-        System.out.println("Número de nós na árvore: " + arvore.contarNos());
+        System.out.println("Número de nós na árvore (recursivo): " + arvore.contarNos());
+        System.out.println("Número de nós na árvore (com pilha): " + arvore.contarNosComPilha());
         
         System.out.print("Pré-ordem: ");
         arvore.preOrdem();
-
-        System.out.println(); 
+        System.out.println();
 
         System.out.print("Em ordem: ");
         arvore.emOrdem();
-
-        System.out.println(); 
+        System.out.println();
 
         System.out.print("Pós-ordem: ");
         arvore.posOrdem();
+        System.out.println();
     }
 }
