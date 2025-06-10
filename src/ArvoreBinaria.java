@@ -3,6 +3,7 @@ import java.util.Stack;
 class No {
     int valor;
     No esquerdo, direito;
+    public int altura;
 
     No(int valor) {
         this.valor = valor;
